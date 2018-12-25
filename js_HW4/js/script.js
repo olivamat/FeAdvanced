@@ -22,34 +22,34 @@ const cashier = {
   error: null,
   greet() {
     // let name = cashier.name;
-    return console.log(`Добрый день, вас обслуживает ${cashier.name}`);
+    return console.log(`Добрый день, вас обслуживает ${this.name}`);
   },
   getCustomerMoney(value) {
-    cashier.customerMoney = value;
-    return cashier.customerMoney;
+    this.customerMoney = value;
+    return this.customerMoney;
   },
   countTotalPrice(products, order) {
     const keys = Object.keys(order);
     for (const key of keys) {
-      cashier.totalPrice += order[key] * products[key];
+      this.totalPrice += order[key] * products[key];
     }
-    return cashier.totalPrice;
+    return this.totalPrice;
   },
   countChange() {
-    cashier.change = cashier.customerMoney - cashier.totalPrice;
-    return cashier.change;
+    this.change = this.customerMoney - this.totalPrice;
+    return this.change;
   },
   onSuccess() {
-    console.log(`Спасибо за покупку, ваша сдача ${cashier.change}!`);
+    console.log(`Спасибо за покупку, ваша сдача ${this.change}!`);
   },
   onError() {
     console.log("Очень жаль, вам не хватает денег на покупки");
   },
   reset() {
-    cashier.customerMoney = 0;
-    cashier.totalPrice = 0;
-    cashier.change = 0;
-    cashier.error = null;
+    this.customerMoney = 0;
+    this.totalPrice = 0;
+    this.change = 0;
+    this.error = null;
   }
 };
 
