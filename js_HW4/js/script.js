@@ -68,7 +68,7 @@ cashier.countTotalPrice(products, order);
 console.log(cashier.totalPrice); // 110
 
 // Вызываем getCustomerMoney для запроса денег клиента
-cashier.getCustomerMoney(300);
+cashier.getCustomerMoney(100);
 
 // Проверяем что в поле с деньгами клиента
 console.log(cashier.customerMoney); // 300
@@ -80,7 +80,7 @@ cashier.countChange();
 console.log(cashier.change); // 190
 
 // Проверяем результат подсчета денег
-if (cashier.change > 0) {
+if (cashier.customerMoney > cashier.totalPrice) {
   // При успешном обслуживании вызываем метод onSuccess
   cashier.onSuccess(); // Спасибо за покупку, ваша сдача 190
 } else {
