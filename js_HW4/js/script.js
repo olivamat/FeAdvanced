@@ -27,10 +27,10 @@ const cashier = {
     this.customerMoney = value;
     return this.customerMoney;
   },
-  countTotalPrice(products, order) {
+  countTotalPrice(allProducts, order) {
     const keys = Object.keys(order);
     for (const key of keys) {
-      this.totalPrice += order[key] * products[key];
+      this.totalPrice += order[key] * allProducts[key];
     }
     return this.totalPrice;
   },
