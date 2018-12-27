@@ -21,7 +21,6 @@ const cashier = {
   change: 0,
   error: null,
   greet() {
-    // let name = cashier.name;
     return console.log(`Добрый день, вас обслуживает ${this.name}`);
   },
   getCustomerMoney(value) {
@@ -36,14 +35,19 @@ const cashier = {
     return this.totalPrice;
   },
   countChange() {
-    this.change = this.customerMoney - this.totalPrice;
-    return this.change;
+    if (this.customerMoney > this.totalPrice) {
+      this.change = this.customerMoney - this.totalPrice;
+
+      return this.change;
+    } else {
+      return (this.error = "Вам не хватает денег на покупки");
+    }
   },
   onSuccess() {
     console.log(`Спасибо за покупку, ваша сдача ${this.change}!`);
   },
   onError() {
-    console.log("Очень жаль, вам не хватает денег на покупки");
+    console.log(this.error);
   },
   reset() {
     this.customerMoney = 0;
@@ -68,7 +72,7 @@ cashier.countTotalPrice(products, order);
 console.log(cashier.totalPrice); // 110
 
 // Вызываем getCustomerMoney для запроса денег клиента
-cashier.getCustomerMoney(100);
+cashier.getCustomerMoney(300);
 
 // Проверяем что в поле с деньгами клиента
 console.log(cashier.customerMoney); // 300
@@ -80,7 +84,7 @@ cashier.countChange();
 console.log(cashier.change); // 190
 
 // Проверяем результат подсчета денег
-if (cashier.customerMoney > cashier.totalPrice) {
+if (cashier.error === null) {
   // При успешном обслуживании вызываем метод onSuccess
   cashier.onSuccess(); // Спасибо за покупку, ваша сдача 190
 } else {
