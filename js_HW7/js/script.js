@@ -137,11 +137,10 @@ console.log(getTotalBalance(users)); // 20916
 
 const getUsersByFriend = (users, name) => {
   let userByFriend=[];
-   users.filter(user => {
-    for (let i=0; i< user.friends.length; i+=1) {
-      if (user.friends[i] === name)
+   users.map(user => {
+      if (user.friends.includes(name)){
       userByFriend.push(user.name);
-    }
+    };
   });
 return userByFriend;
 };
