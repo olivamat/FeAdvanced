@@ -74,25 +74,6 @@ class Notepad {
   }
 
   deleteNote(id) {
-    // const i = 0;
-    // for (const note of this._notes){
-
-    //   if (note.id === id) {
-    //     this._notes.splice(i, 1);
-    //     return;
-    //   } else i+=1;
-    // }
-    // const note = this._note;
-    // console.log(note);
-    // const i = note.key;
-    // this._notes.splice(i, 1);
-    // return;
-    // const note = this.nones;
-    // const noteID = note.map(note => (if (note.id === id) {
-    //       this._notes.splice(note, 1);
-    //       return;
-    //     }  ))
-
     for (let i = 0; i < this._notes.length; i += 1) {
       const note = this._notes[i];
       if (note.id === id) {
@@ -173,7 +154,7 @@ const createActionButton = (content, button) => {
   const action = document.createElement("button");
   action.classList.add("action");
   action.setAttribute("data-action", button);
-
+  // action.dataset.action = button
   const materialIcons = document.createElement("i");
   materialIcons.classList.add("material-icons");
   materialIcons.classList.add("action__icon");
@@ -191,20 +172,24 @@ const createNoteFooter = priority => {
   const noteSection2 = document.createElement("section");
   noteSection2.classList.add("note__section");
   noteSection1.appendChild(
-    createActionButton("expand_more", ICON_TYPES.DECREASE_PRIORITY)
+    createActionButton(ICON_TYPES.ARROW_DOWN, NOTE_ACTIONS.DECREASE_PRIORITY)
   );
 
   noteSection1.appendChild(
-    createActionButton("expand_less", ICON_TYPES.INCREASE_PRIORITY)
+    createActionButton(ICON_TYPES.ARROW_UP, NOTE_ACTIONS.INCREASE_PRIORITY)
   );
   const span = document.createElement("span");
   noteSection1.appendChild(span);
   span.classList.add("note__priority");
-  span.textContent = `Priority ${Notepad.getPriorityName(priority)}`;
+  span.textContent = `Priority: ${Notepad.getPriorityName(priority)}`;
   noteFooter.appendChild(noteSection2);
-  noteSection2.appendChild(createActionButton("edit", ICON_TYPES.EDIT));
+  noteSection2.appendChild(
+    createActionButton(ICON_TYPES.EDIT, NOTE_ACTIONS.EDIT)
+  );
 
-  noteSection2.appendChild(createActionButton("delete", ICON_TYPES.DELETE));
+  noteSection2.appendChild(
+    createActionButton(ICON_TYPES.DELETE, NOTE_ACTIONS.DELETE)
+  );
   return noteFooter;
 };
 
